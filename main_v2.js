@@ -1,52 +1,43 @@
 // Apni 'main_v2.js' file ka poora purana code delete karein aur ye naya code paste karein
 document.addEventListener('DOMContentLoaded', () => {
     
-    // Mappings ko ek aisi tartib mein merge karein jo conflicts se bachaye
+    // Step 1: Mappings ko sahi tartib mein merge karein
+    // General rules (jaise 'ی' -> 'य') pehle aayengi
+    // Specific rules (jaise 'ی' -> 'ी') baad mein aayengi taake woh overwrite kar sakein
+    
     const fullMap = {
-        ...MAPPINGS.hamza_combo,
-        ...MAPPINGS.final_vowels,
-        ...MAPPINGS.hindustani_consonants,
-        ...MAPPINGS.initial_vowels,
+        // --- General Rules ---
         ...MAPPINGS.vowels,
+        ...MAPPINGS.hindustani_consonants,
         ...MAPPINGS.hamza,
+        ...MAPPINGS.arabic,
+
+        // --- Specific Rules (Overwriting) ---
+        ...MAPPINGS.initial_vowels, // 'ا' ko 'अ' banayega (na ke 'ा')
+        ...MAPPINGS.final_vowels,   // 'ی' ko 'ी' banayega (na ke 'य')
+        ...MAPPINGS.hamza_combo,    // Sabse specific combos
+
+        // --- Baaqi cheezein ---
         ...MAPPINGS.numerals,
         ...MAPPINGS.punctuations,
     };
 
+    // Step 2: Naya translator banayein
     const translator = new StringTranslator(fullMap);
-    
+
+    // Step 3: Button click par event listener
     const convertButton = document.getElementById('convert-btn');
     const urduInput = document.getElementById('urdu-input');
     const hindiOutput = document.getElementById('hindi-output');
 
     convertButton.addEventListener('click', () => {
-        let urduText = urduInput.value;
+        const urduText = urduInput.value;
         
-        // Final post-processing rules
-        function applyRules(text) {
-            // Rule 1: 'ain' (ع) ke masle ko theek karna
-            // Example: 'بعد' -> 'बअद' (galat) -> 'बाद' (sahi)
-            text = text.replace(/([^\s])अ/g, '$1ा'); // Agar 'ain' do consonants ke beech mein ho toh use 'aa' ki aawaz dein
-            
-            // Rule 2: Short vowel 'pesh' (u) ka masla theek karna
-            // Example: 'ख़वद' -> 'ख़ुद'
-            text = text.replace(/ख़वद/g, 'ख़ुद');
-            text = text.replace(/मख़तलफ़/g, 'मुख़्तलिफ़');
-            text = text.replace(/मतअस़्/g, 'मुतास्'); // मुतास्सिर
-
-            // Rule 3: 'गांव' jaise lafzon ke liye Chandrabindu
-            text = text.replace(/गांव/g, 'गाँव');
-            text = text.replace(/पांव/g, 'पाँव');
-            
-            return text;
-        }
+        // Translator se text convert karein
+        const hindiText = translator.translate(urduText);
         
-        // Pehle basic mapping apply karein
-        let hindiText = translator.translate(urduText);
-        
-        // Phir special rules apply karein
-        hindiText = applyRules(hindiText);
-        
+        // Natija output box mein dikhayein
         hindiOutput.textContent = hindiText;
     });
+
 });
