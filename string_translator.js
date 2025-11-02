@@ -1,53 +1,25 @@
-// string_translator.js
-// Ye file str_mapper.py ka pure JavaScript version hai.
-// MAPPINGS constant mappings.js se import hota hai.
-
+// Is file ka poora purana code delete kar ke ye naya code paste karein
 class StringTranslator {
-  constructor(maps) {
-    this.maps = maps;    // object of all CSV mappings
-  }
+    constructor(translationMap) {
+        // Sabse lambi keys ko pehle replace karna zaroori hai
+        // taake "اؤ" pehle replace ho, na ke "ا"
+        this.sortedKeys = Object.keys(translationMap).sort((a, b) => b.length - a.length);
+        this.translationMap = translationMap;
 
-  translate(text, mapName) {
-    if (!this.maps[mapName]) {
-      console.error("Invalid map:", mapName);
-      return text;
+        // Saari keys ko ek saath dhoondne ke liye ek Regex banayein
+        // Example: (اؤ|ائے|ی|و|...)
+        this.regex = new RegExp(this.sortedKeys.map(key => this.escapeRegExp(key)).join('|'), 'g');
     }
 
-    const map = this.maps[mapName];
-    let output = "";
-    let i = 0;
-
-    while (i < text.length) {
-      // 3-character match
-      const three = text.slice(i, i + 3);
-      if (map[three]) {
-        output += map[three];
-        i += 3;
-        continue;
-      }
-
-      // 2-character match
-      const two = text.slice(i, i + 2);
-      if (map[two]) {
-        output += map[two];
-        i += 2;
-        continue;
-      }
-
-      // single character match
-      const one = text[i];
-      if (map[one]) {
-        output += map[one];
-      } else {
-        output += one; // fallback: character remains same
-      }
-
-      i++;
+    escapeRegExp(string) {
+        // Regex special characters ko escape karein
+        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     }
 
-    return output;
-  }
+    translate(text) {
+        // Regex ka istemal kar ke saari mappings ko ek saath apply karein
+        return text.replace(this.regex, (matchedKey) => {
+            return this.translationMap[matchedKey];
+        });
+    }
 }
-
-// global translator object
-const Translator = new StringTranslator(MAPPINGS);
