@@ -1,25 +1,32 @@
+// Ye aapki final, complete mapping file hai.
+// Puraana code delete kar ke isay paste karein.
+
 const MAPPINGS = {
 
+  // Data from: arabic.csv
   arabic: {
     "إ": "इ",
     "أو": "ऊ"
   },
 
+  // Data from: final_vowels.csv
   final_vowels: {
     "وں": "ों",
     "ی": "ी",
     "و": "ो"
   },
 
+  // Data from: hamza.csv (Aap ki confirmation ke mutabiq)
   hamza: {
-    "ع": "ʿ",
-    "أ": "अ़",
-    "ئ": "ई़",
-    "ۓ": "ए़",
-    "ؤ": "ओ़",
-    "ۂ": "ह़"
+    "ع": "अ",
+    "أ": "अ",
+    "ئ": "इ",
+    "ۓ": "ए",
+    "ؤ": "ओ",
+    "ۂ": "ह"
   },
 
+  // Data from: hamza_combo.csv (Visarga 'ः' hata diya gaya hai)
   hamza_combo: {
     "ئا": "िआ",
     "یئا": "ीआ",
@@ -54,17 +61,18 @@ const MAPPINGS = {
     "وْءے": "व्ए",
     "وْئے": "व्ए",
     "ائے": "ाए",
-    "آئے": "आए",
-    "ء": "ः"
+    "آئے": "आए"
+    // 'ء' -> 'ः' wali mapping aapke kehne par hata di gayi hai
   },
 
+  // Data from: hindustani_consonants.csv
   hindustani_consonants: {
     "ک": "क",
     "کھ": "ख",
-    "ق": "क़",
-    "خ": "ख़",
+    "ق": "क़",
+    "خ": "ख़",
     "گ": "ग",
-    "غ": "ग़",
+    "غ": "ग़",
     "ڳ": "ॻ",
     "گھ": "घ",
     "چ": "च",
@@ -74,8 +82,8 @@ const MAPPINGS = {
     "ج": "ज",
     "جھ": "झ",
     "ڄ": "ॼ",
-    "ز": "ज़",
-    "ذ": "ज़़",
+    "ز": "ज़",
+    "ذ": "ज़़",
     "ض": "ॹ",
     "ظ": "ॹ़",
     "ژ": "झ़",
@@ -86,8 +94,8 @@ const MAPPINGS = {
     "ݙ": "ॾ",
     "ڈ": "ड",
     "ڈھ": "ढ",
-    "ڑ": "ड़",
-    "ڑھ": "ढ़",
+    "ڑ": "ड़",
+    "ڑھ": "ढ़",
     "ت": "त",
     "تھ": "थ",
     "ط": "त़",
@@ -99,7 +107,7 @@ const MAPPINGS = {
     "ݩ": "ञ",
     "پ": "प",
     "پھ": "फ",
-    "ف": "फ़",
+    "ف": "फ़",
     "ب": "ब",
     "ٻ": "ॿ",
     "بھ": "भ",
@@ -121,6 +129,7 @@ const MAPPINGS = {
     "ھ": "ह"
   },
 
+  // Data from: initial_vowels.csv
   initial_vowels: {
     "ا": "अ",
     "آ": "आ",
@@ -128,6 +137,7 @@ const MAPPINGS = {
     "او": "ओ"
   },
 
+  // Data from: numerals.csv
   numerals: {
     "۰": "०",
     "۱": "१",
@@ -141,6 +151,7 @@ const MAPPINGS = {
     "۹": "९"
   },
 
+  // Data from: punctuations.csv
   punctuations: {
     "۔": "।",
     "؟": "?",
@@ -148,13 +159,14 @@ const MAPPINGS = {
     "۝": "॥"
   },
 
+  // Data from: sindhi_consonants.csv
   sindhi_consonants: {
     "ڪ": "क",
     "ک": "ख",
-    "ق": "क़",
-    "خ": "ख़",
+    "ق": "क़",
+    "خ": "ख़",
     "گ": "ग",
-    "غ": "ग़",
+    "غ": "ग़",
     "ڳ": "ॻ",
     "گه": "घ",
     "چ": "च",
@@ -162,8 +174,8 @@ const MAPPINGS = {
     "ج": "ज",
     "جه": "झ",
     "ڄ": "ॼ",
-    "ز": "ज़",
-    "ذ": "ज़़",
+    "ز": "ज़",
+    "ذ": "ज़़",
     "ض": "ॹ",
     "ظ": "ॹ़",
     "ژ": "झ़",
@@ -172,8 +184,8 @@ const MAPPINGS = {
     "ڏ": "ॾ",
     "ڊ": "ड",
     "ڍ": "ढ",
-    "ڙ": "ड़",
-    "ڙه": "ढ़",
+    "ڙ": "ड़",
+    "ڙه": "ढ़",
     "ت": "त",
     "ٿ": "थ",
     "ط": "त़",
@@ -185,7 +197,7 @@ const MAPPINGS = {
     "ڃ": "ञ",
     "پ": "प",
     "ڦ": "फ",
-    "ف": "फ़",
+    "ف": "फ़",
     "ب": "ब",
     "ٻ": "ॿ",
     "ڀ": "भ",
@@ -195,7 +207,7 @@ const MAPPINGS = {
     "ل": "ल",
     "ݪ": "ळ",
     "و": "व",
-    "श": "श",
+    "ش": "श",
     "ݜ": "ष",
     "س": "स",
     "ص": "स़",
@@ -205,18 +217,21 @@ const MAPPINGS = {
     "ۃ": "ह॒"
   },
 
+  // Data from: sindhi_final.csv
   sindhi_final: {
     "گھ": "घ",
     "جھ": "झ",
-    "ڙھ": "ढ़",
+    "ڙھ": "ढ़",
     "یں": "ीं"
   },
 
+  // Data from: sindhi_isolated.csv
   sindhi_isolated: {
     "۾": "में",
     "۽": "ऐं"
   },
 
+  // Data from: vowels.csv (stray characters ignored)
   vowels: {
     "ں": "ं",
     "ے": "े",
