@@ -1,5 +1,0 @@
-pandas
-aksharamukha
-git+https://github.com/GokulNC/indic_nlp_library
-Flask
-Flask-CORS
