@@ -4,7 +4,7 @@ import pandas as pd
 from .str_mapper import StringTranslator
 from .common import devanagari_preprocessor, devanagari_short_vowels_remover, devanagari_initial_vowels_abjadify, devanagari_nuqta_consonants_simplifier, devanagari_non_initial_vowels_abjadifier
 
-from urduhack.normalization.character import remove_diacritics, normalize_characters, normalize_combine_characters
+from urduhack_lite import remove_diacritics, normalize_characters, normalize_combine_characters
 
 INITIAL_MAP_FILES = ['initial_vowels.csv']
 MAIN_MAP_FILES = ['vowels.csv']
