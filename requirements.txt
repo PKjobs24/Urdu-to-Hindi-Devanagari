@@ -1,5 +1,4 @@
 pandas
-urduhack
 aksharamukha
 git+https://github.com/GokulNC/indic_nlp_library
 Flask
