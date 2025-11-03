@@ -6,8 +6,9 @@ import os
 # Ye line batati hai ke humara 'indo_arabic_transliteration' folder kahan hai
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '.')))
 
-# Ab hum apne original Python code se mapper import karenge
-from indo_arabic_transliteration.mapper import script_convert
+# --- YAHAN CHANGE KIYA GAYA HAI ---
+# Humne 'script_convert' (Basic) ki jagah 'online_transliterate' (Advanced) ko import kiya hai
+from indo_arabic_transliteration.sangam_api import online_transliterate
 
 # Flask server banayein
 app = Flask(__name__)
@@ -24,15 +25,18 @@ def convert_text():
         data = request.get_json()
         if 'text' not in data:
             return jsonify({'error': 'No text provided'}), 400
-        
+
         urdu_text = data['text']
-        
-        # Yahan hum aapka original Python function call kar rahe hain
-        hindi_text = script_convert(urdu_text, 'ur-PK', 'hi-IN')
-        
+
+        # --- YAHAN CHANGE KIYA GAYA HAI ---
+        # Hum ab 'online_transliterate' function call kar rahe hain
+        hindi_text = online_transliterate(urdu_text, 'ur-PK', 'hi-IN')
+
         return jsonify({'converted_text': hindi_text})
-    
+
     except Exception as e:
+        # Error log karein taake hum debug kar sakein
+        print(f"Error during conversion: {e}")
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
